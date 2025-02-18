@@ -1,24 +1,44 @@
-# Projeto Angular + Spring Boot com OAuth2, Spring Security e MySQL
+# 📦 BizManager
 
-Este projeto implementa um sistema de autenticação utilizando **OAuth2**, com **Spring Boot** no backend e **Angular** no frontend, integrados ao **MySQL**.
+Este projeto implementa um sistema de autenticação utilizando **OAuth2**, com **Spring Boot** no backend e **Angular** no frontend, integrados ao **MySQL**. Além disso, oferece funcionalidades de gerenciamento de estoque para facilitar o controle de produtos.
 
 ## Tecnologias Usadas
 
-- **Frontend**: Angular
-- **Backend**: Spring Boot
-- **Banco de Dados**: MySQL
-- **Autenticação**: OAuth2 + Spring Security
+- 🌐 **Frontend**: Angular
+- 🖥️ **Backend**: Spring Boot
+- 🗄️ **Banco de Dados**: MySQL
+- 🔐 **Autenticação**: OAuth2 + Spring Security
 
 ## Pré-Requisitos
 
-- **Java 11+**
-- **Maven**
-- **MySQL 5.7+**
-- **Node.js e Angular CLI**
+- ☕ **Java 11+**
+- 🔧 **Maven**
+- 🗄️ **MySQL 5.7+**
+- 🟢 **Node.js e Angular CLI**
 
-## Passos para Execução
+### 🚀 Clonando o Projeto
 
-### 1. Banco de Dados
+Para clonar o repositório e seus submódulos, siga os passos abaixo:
+
+1. Abra o terminal (Git Bash, Terminal do Mac ou Linux).
+2. Navegue até a pasta onde deseja clonar o projeto:
+    ```sh
+    cd /caminho/para/a/pasta/desejada
+    ```
+3. Clone o repositório com submódulos:
+    ```sh
+    git clone --recurse-submodules https://github.com/JoaoGaldinoCunha/ProjectBizManager.git
+    ```
+4. Entre na pasta do projeto:
+    ```sh
+    cd ProjectBizManager
+    ```
+5. (Opcional) Atualize os submódulos para a versão mais recente:
+    ```sh
+    git submodule update --remote
+    ```
+    
+## 1. 🗄️Banco de Dados 
 
 1. Crie o banco de dados no MySQL:
    O script para criação e configuração do banco de dados está disponível no seguinte caminho:
@@ -116,7 +136,7 @@ Este projeto implementa um sistema de autenticação utilizando **OAuth2**, com 
 
 ## 2. 💻 Backend (Spring Boot)
 
-Navegue até o diretório do Backend:
+Navegue até o diretório do Backend.
 
    ```bash
    cd Backend
@@ -149,7 +169,6 @@ bash
 ```ng serve```
 O frontend estará disponível em http://localhost:4200.
 
-## 📑 Uso
-Após realizar a instalação e configuração, você pode acessar a aplicação frontend em http://localhost:4200. Utilize as credenciais configuradas para autenticação OAuth2 e faça login para acessar as funcionalidades do sistema.
+## 📜 Licença
 
-
+Este projeto está licenciado sob a [MIT License](LICENSE).
