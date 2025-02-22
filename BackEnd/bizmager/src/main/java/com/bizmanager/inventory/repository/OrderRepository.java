@@ -33,8 +33,8 @@ public interface OrderRepository extends JpaRepository<TbOrder,Long> {
     List<OrdersDTO> searchingOrdersByIdComapnyAndOrderId(@Param("company_id") Long companyId, @Param("order_id") Long orderId);
 
 
-    @Query(nativeQuery = true,value = "SELECT o.id AS order_id, o.status, o.client_cnpj, p.name AS product_name, oi.quantity AS product_quantity, p.category AS product_category FROM orders o JOIN order_items oi ON o.id = oi.order_id JOIN products p ON oi.product_id = p.id WHERE o.id=:order_id ORDER BY o.id;")
-    List<OrdersDetailsDTO> seachingOderById(@Param("order_id")Long id);
+    @Query(nativeQuery = true,value = "SELECT o.id AS order_id, o.status, o.client_cnpj, p.name AS product_name, oi.quantity AS product_quantity, p.category AS product_category FROM orders o JOIN order_items oi ON o.id = oi.order_id JOIN products p ON oi.product_id = p.id JOIN employees e ON o.responsible_id = e.id JOIN company c ON e.company_id = c.id WHERE o.id =:order_id  AND c.id = :company_id ORDER BY o.id;")
+    List<OrdersDetailsDTO> seachingOderById(@Param("order_id")Long idOrder,@Param("company_id")Long idComapny);
 
 
 }

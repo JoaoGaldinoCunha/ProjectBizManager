@@ -43,12 +43,8 @@ public class OrderController {
 
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
-    @GetMapping("/odersById/{id}")
-    public  ResponseEntity<?> searchOdersById(@PathVariable Long id){return orderService.searchOdersById(id);}
-
-    @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
-    @GetMapping("/odersByIdCompanyAndOrder/{companyId}/{orderId}")
-    public  ResponseEntity<?> searchOdersById(@PathVariable Long companyId,@PathVariable Long orderId){return orderService.seachOrderByIdCompanyAndOrder(companyId,orderId);}
+    @GetMapping("/odersById/{orderId}/{companyId}")
+    public  ResponseEntity<?> searchOdersById(@PathVariable Long orderId,@PathVariable Long companyId){return orderService.searchOdersById(orderId,companyId);}
 
 
 }

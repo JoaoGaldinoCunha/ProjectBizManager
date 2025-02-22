@@ -58,8 +58,8 @@ public class EmployeesController {
     }
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
-    @GetMapping("searchByEmployeeName/{name}")
-    public ResponseEntity<?> searchEmployeesByName(@PathVariable String name){
-        return employeesService.searchEmployeesByName(name);
+    @GetMapping("searchByEmployeeName/{name}/{companyId}")
+    public ResponseEntity<?> searchEmployeesByName(@PathVariable String name,Long companyId){
+        return employeesService.searchEmployeesByName(name,companyId);
     }
 }

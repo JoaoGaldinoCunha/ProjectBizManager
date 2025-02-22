@@ -17,7 +17,8 @@ import java.util.List;
 @Repository
 public interface ProductRepsitory extends JpaRepository<TbProduct,Long> {
 
-    List<TbProduct> findByName(String name);
+    @Query(nativeQuery = true, value = "SELECT 1 FROM products p JOIN stock s ON p.stock_id = s.id JOIN company c ON s.company_id = c.id WHERE p.name = :product_name AND c.id = :company_id AND s.id = :stock_id")
+    List<Long> findByName(@Param("product_name") String productName, @Param("company_id") Long companyId, @Param("stock_id") Long stockId);
 
     @Query(nativeQuery = true, value = "SELECT * FROM products WHERE stock_id=:id")
     List<TbProduct> searchingProductsByStockId(@Param("id") Long id);

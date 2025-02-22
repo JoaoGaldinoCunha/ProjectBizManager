@@ -20,8 +20,8 @@ public interface EmployeesRepository extends JpaRepository<TbEmployees,Long> {
 
     TbEmployees findTbEmployeesByEmail(String email);
 
-    @Query(value = "SELECT e.id, e.name, e.birth_date, e.email, e.password, e.cpf, e.company_id, e.role_id, r.name AS role_name FROM employees e JOIN roles r ON e.role_id = r.id WHERE e.name LIKE :name%", nativeQuery = true)
-    List<TbEmployees> searchingEmployeeNames(@Param("name") String name);
+    @Query(value = "SELECT e.id, e.name, e.birth_date, e.email, e.password, e.cpf, e.company_id, e.role_id, r.name AS role_name FROM employees e JOIN roles r ON e.role_id = r.id WHERE e.name LIKE :name% and e.company_id=:idCompany", nativeQuery = true)
+    List<TbEmployees> searchingEmployeeNames(@Param("name") String name, @Param("companyId") Long id);
 
 
     Optional<TbEmployees> findByEmail(String email);

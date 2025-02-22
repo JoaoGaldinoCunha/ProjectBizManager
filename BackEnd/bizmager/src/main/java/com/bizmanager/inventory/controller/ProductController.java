@@ -4,6 +4,7 @@ import com.bizmanager.inventory.model.TbProduct;
 import com.bizmanager.inventory.model.dto.ProductQuantityDTO;
 import com.bizmanager.inventory.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,27 +17,28 @@ public class ProductController {
     ProductService productService;
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
-    @PostMapping("/create")
-    public ResponseEntity<?> createStock(@RequestBody TbProduct product) {
-        return productService.createProduct(product) ;
+    @PostMapping("/create/{companyId}")
+    public ResponseEntity<?> createProduct(@RequestBody TbProduct product, @PathVariable Long companyId) {
+        return productService.createProduct(product, companyId);
     }
 
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteStock(@PathVariable Long id){
+
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         return productService.deleteProduct(id);
     }
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody TbProduct product){
-        return productService.updateProduct(id,product);
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody TbProduct product) {
+        return productService.updateProduct(id, product);
     }
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
     @PutMapping("/update/quantity")
-    public ResponseEntity<?> updateProductQuantity( @RequestBody ProductQuantityDTO productQuantityDTO){
+    public ResponseEntity<?> updateProductQuantity(@RequestBody ProductQuantityDTO productQuantityDTO) {
         return productService.updateProductQuantity(productQuantityDTO);
     }
 
@@ -48,8 +50,8 @@ public class ProductController {
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
     @GetMapping("/searchByProductName/{stockId}/{name}")
-    public ResponseEntity<?> searchProductsByName(@PathVariable String name,@PathVariable Long stockId) {
-        return productService.searchProductsByName(name,stockId);
+    public ResponseEntity<?> searchProductsByName(@PathVariable String name, @PathVariable Long stockId) {
+        return productService.searchProductsByName(name, stockId);
     }
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
@@ -66,13 +68,14 @@ public class ProductController {
 
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
     @GetMapping("/searchProductById/{id}")
-    public ResponseEntity<?>  searchProductsById(@PathVariable Long id){
-        return  productService.searchProductById(id);
+    public ResponseEntity<?> searchProductsById(@PathVariable Long id) {
+        return productService.searchProductById(id);
     }
+
     @PreAuthorize("hasAnyAuthority('SCOPE_Company', 'SCOPE_Admin', 'SCOPE_Employees')")
     @GetMapping("/searchAllProductsByCompanyId/{id}")
-    public ResponseEntity<?>  searchAllProductsByComapnyId(@PathVariable Long id){
-        return  productService.searchAllProductsByComapnyId(id);
+    public ResponseEntity<?> searchAllProductsByComapnyId(@PathVariable Long id) {
+        return productService.searchAllProductsByComapnyId(id);
     }
 
 

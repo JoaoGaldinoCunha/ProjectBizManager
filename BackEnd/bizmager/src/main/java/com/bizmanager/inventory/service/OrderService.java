@@ -126,11 +126,11 @@ public class OrderService {
     }
 
 
-    public ResponseEntity<?>searchOdersById(Long id){
-        if(!orderRepository.findById(id).isPresent()){
+    public ResponseEntity<?>searchOdersById(Long orderId,Long companyId){
+        if(!orderRepository.findById(orderId).isPresent()){
             return new ResponseEntity<>(new ApiResponse("Pedido não encontrada."), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(orderRepository.seachingOderById(id), HttpStatus.OK);
+        return new ResponseEntity<>(orderRepository.seachingOderById(orderId,companyId), HttpStatus.OK);
     }
 
     public ResponseEntity<?> seachOrderByIdCompanyAndOrder(Long companyId, Long orderId) {

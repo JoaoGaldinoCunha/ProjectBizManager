@@ -32,12 +32,12 @@ public class ProductService {
     private OrderRepository orderRepository;
 
 
-    public ResponseEntity<ApiResponse> createProduct(TbProduct product) {
+    public ResponseEntity<ApiResponse> createProduct(TbProduct product,Long companyId) {
         if (product.getStock() == null) {
             return new ResponseEntity<>(new ApiResponse("O campo identificador de estoque não pode ser nulo."), HttpStatus.BAD_REQUEST);
         }
 
-        List<TbProduct> productName = productRepository.findByName(product.getName());
+        List<Long> productName = productRepository.findByName(product.getName(),companyId,product.getStock().getId());
         Optional<TbStock> stock = stockRepository.findById(product.getStock().getId());
         if (!stock.isPresent()) {
             return new ResponseEntity<>(new ApiResponse("Id do estoque: " + product.getStock().getId() + " não existe"), HttpStatus.BAD_REQUEST);

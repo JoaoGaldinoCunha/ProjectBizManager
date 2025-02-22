@@ -217,11 +217,11 @@ public class EmployeesService {
     }
 
 
-    public ResponseEntity<?> searchEmployeesByName(String name) {
+    public ResponseEntity<?> searchEmployeesByName(String name,Long companyId) {
         if (name.matches(".*\\d.*")) {
             return new ResponseEntity<>(new ApiResponse("Não é permitido usar números"), HttpStatus.BAD_REQUEST);
         }
-        List<TbEmployees> employeesData = employeesRepository.searchingEmployeeNames(name);
+        List<TbEmployees> employeesData = employeesRepository.searchingEmployeeNames(name,companyId);
 
         List<EmployeeDetailsDTO> employeeDTOs = employeesData.stream().map(employee -> {
             EmployeeDetailsDTO dto = new EmployeeDetailsDTO();
